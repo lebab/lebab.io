@@ -1,0 +1,57 @@
+.jumbotron {
+  background: url(/assets/images/jumbotron.jpg) center center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  width: 100%;
+  min-height: 400px;
+  text-align: center;
+  padding: 50px 0;
+
+  h1 {
+    font-weight: 200;
+    font-size: 3em;
+    color: $primary-color;
+    margin-bottom: 100px;
+  }
+
+  h3 {
+    color: #ffffff;
+    margin-top: 80px;
+
+    a {
+      color: #efefef;
+    }
+  }
+
+  a.get-started {
+    display: inline-block;
+    text-align: center;
+    border: 2px solid #ffffff;
+    padding: 10px;
+    max-width: 90%;
+    width: 400px;
+    color: #ffffff;
+    border-radius: 3px;
+    text-decoration: none;
+
+    &:hover {
+      background-color: #ffffff;
+      color: $grey-color-dark;
+    }
+
+    &, &:hover {
+      transition: color .3s ease, background-color .3s ease-out;
+    }
+  }
+}
+
+.why {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.sample-code {
+  .window {
+    background-color: #383830;
+  }
+}

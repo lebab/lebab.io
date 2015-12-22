@@ -1,0 +1,64 @@
+---
+layout: repl
+title: Lebab - Try it live!
+---
+
+<div class="row divide-2 repl">
+  <div>
+    <div id="editor"></div>
+  </div>
+  <div>
+    <div id="highlighter"></div>
+  </div>
+</div>
+
+<script src="/assets/scripts/lebab.js"></script>
+<script src="https://cdn.jsdelivr.net/ace/1.2.2/min/ace.js"></script>
+
+<script>
+  var timeout = 0;
+  var transformer = new Lebab.Transformer();
+
+  var editor = ace.edit("editor");
+  var highlighter = ace.edit("highlighter");
+
+  function transpile(code) {
+    console.log(JSON.stringify(code));
+    transformer.read(code);
+    transformer.applyTransformations();
+    highlighter.setValue(transformer.out());
+    localStorage.code = editor.getValue();
+  }
+
+  editor.session.setOptions({
+    mode: "ace/mode/javascript",
+    tabSize: 2,
+    useSoftTabs: true
+  });
+  editor.setTheme("ace/theme/monokai");
+  editor.getSession().on('change', function () {
+    try {
+      clearTimeout(timeout);
+      timeout = setTimeout(function () {
+        transpile(editor.getValue());
+      }, 500);
+    } catch (err) {
+      console.error(err);
+    }
+  });
+
+  highlighter.setTheme("ace/theme/monokai");
+  highlighter.getSession().setMode("ace/mode/javascript");
+  highlighter.setReadOnly(true);
+
+  var initCode;
+
+  if (localStorage.code) {
+    initCode = localStorage.code;
+  } else {
+    initCode = "var Employee = function Employee() {\n  this.alive = true;\n};\n\nEmployee.prototype.setSkills = function(skills) {\n  skills = skills || [];\n  var defaultSkills = ['JavaScript'];\n  this.skills = skills.concat(defaultSkills);\n};\n\nEmployee.prototype.sayHello = function() {\n  window.setTimeout(function() {\n      console.log('Hello World!');\n  }, 2000);\n};\n\nObject.defineProperty(Employee.prototype, 'name', {\n  get: function() {\n    return this.firstName + ' ' + this.lastName;\n  }\n});\n";
+  }
+
+  transpile(initCode);
+  editor.setValue(initCode);
+</script>

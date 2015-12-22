@@ -1,0 +1,77 @@
+---
+layout: default
+---
+
+<div class="jumbotron">
+  <h1>Lebab modernizes your JavaScript code!</h1>
+  <a href="#get-started" class="get-started">Get started!</a>
+
+  <h3>Lebab* is the opposite of <a href="https://babeljs.io/">Babel</a>.</h3>
+</div>
+
+<div class="page-content">
+  <div class="wrapper">
+    <div class="row divide-2 why">
+      <div class="sample-code">
+        <div class="window mac">
+          <div class="title-bar">
+            <div class="close"></div>
+            <div class="minimize"></div>
+            <div class="zoom"></div>
+          </div>
+          <div class="page">
+            {% include_relative _includes/old-code.md %}
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h1>Still coding like this?</h1>
+
+        <p>
+          This code is fine. There's nothing wrong with it. It's clean and understandable.
+          But it's just a little old :/
+        </p>
+      </div>
+    </div>
+    <div class="row divide-2 why">
+      <div>
+        <h1>Wait... Think twice!</h1>
+
+        <p>
+          This is the ES2015 version of this code. It is syntactical sugar, isn't it?
+          <br />
+          <a href="https://babeljs.io/docs/learn-es2015/">Learn more about ES2015</a>
+        </p>
+      </div>
+
+      <div class="sample-code">
+        <div class="window mac">
+          <div class="title-bar">
+            <div class="close"></div>
+            <div class="minimize"></div>
+            <div class="zoom"></div>
+          </div>
+          <div class="page">
+            {% include_relative _includes/new-code.md %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="get-started">
+  <div class="wrapper">
+    <h1 id="get-started" class="text-center">Getting started</h1>
+    <p>Lebab helps you modernize your old-fashioned code. It scans your code and finds the parts that can be converted to a newer version of ECMAScript.</p>
+    <p>You can install Lebab CLI tool via npm:</p>
+    {% highlight bash %}npm install -g lebab{% endhighlight %}
+    <p>Then run this command to convert your <strong>es5</strong> code into <strong>es6</strong>:</p>
+    {% highlight bash %}lebab es5.js -o es6.js{% endhighlight %}
+
+    <p>You can also <a href="/try-it">check the REPL</a>.</p>
+  </div>
+</div>

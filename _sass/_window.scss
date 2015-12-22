@@ -1,0 +1,68 @@
+$window-border-radius: 6px;
+$title-bar-height: 40px;
+$control-height: 12px;
+$control-spacing: 10px;
+$control-side-distance: 10px;
+
+.window {
+  width: 90%;
+  background: #eee;
+  display: block;
+  top: 20%;
+  max-height: 80%;
+  min-height: 100px;
+  position: relative;
+  border-radius: $window-border-radius;
+}
+
+.mac {
+
+  &.window {
+    box-shadow: 0 10px 30px 5px rgba(0, 0, 0, 0.36);
+  }
+
+  .title-bar {
+    height: $title-bar-height;
+    background: linear-gradient(to bottom, #f0f0f0, #e9e9e9);
+    border-top-left-radius: $window-border-radius;
+    border-top-right-radius: $window-border-radius;
+    border-top: 1px solid #faf9ff;
+  }
+
+  // UI elements in the title bar are collectively refered
+  // to here as "controlls".
+  .close, .minimize, .zoom {
+    height: $control-height;
+    width: $control-height;
+    border-radius: $control-height / 2;
+    background: #ddd;
+    position: absolute;
+    top: ($title-bar-height - $control-height) / 2;
+  }
+
+  .close {
+    background-color: #ff6052;
+    left: $control-side-distance;
+  }
+
+  .minimize {
+    background-color: #ffbe06;
+    left: $control-side-distance + $control-height + $control-spacing;
+  }
+
+  .zoom {
+    background-color: #16cc37;
+    left: $control-side-distance + ($control-height + $control-spacing) * 2;
+  }
+
+  // For OSX we're co-opting the "maximize" button for "fullscreen"
+  .maximize {
+    $size: 20px;
+    height: $size;
+    width: $size;
+    background: #aaa;
+    position: absolute;
+    top: ($title-bar-height - $size) / 2;
+    right: $control-side-distance;
+  }
+}
