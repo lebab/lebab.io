@@ -17,16 +17,23 @@ title: Lebab - Try it live!
 
 <script>
   var timeout = 0;
-  var transformer = new Lebab.Transformer();
+  var transformer = new Lebab.Transformer({
+    'class': true,
+    'template': true,
+    'arrow': true,
+    'let': true,
+    'default-param': true,
+    'obj-method': true,
+    'obj-shorthand': true,
+    'no-strict': true,
+    'commonjs': true
+  });
 
   var editor = ace.edit("editor");
   var highlighter = ace.edit("highlighter");
 
   function transpile(code) {
-    console.log(JSON.stringify(code));
-    transformer.read(code);
-    transformer.applyTransformations();
-    highlighter.setValue(transformer.out());
+    highlighter.setValue(transformer.run(code), -1);
     localStorage.code = editor.getValue();
   }
 
@@ -35,6 +42,7 @@ title: Lebab - Try it live!
     tabSize: 2,
     useSoftTabs: true
   });
+
   editor.setTheme("ace/theme/monokai");
   editor.getSession().on('change', function () {
     try {
@@ -56,9 +64,9 @@ title: Lebab - Try it live!
   if (localStorage.code) {
     initCode = localStorage.code;
   } else {
-    initCode = "var Employee = function Employee() {\n  this.alive = true;\n};\n\nEmployee.prototype.setSkills = function(skills) {\n  skills = skills || [];\n  var defaultSkills = ['JavaScript'];\n  this.skills = skills.concat(defaultSkills);\n};\n\nEmployee.prototype.sayHello = function() {\n  window.setTimeout(function() {\n      console.log('Hello World!');\n  }, 2000);\n};\n\nObject.defineProperty(Employee.prototype, 'name', {\n  get: function() {\n    return this.firstName + ' ' + this.lastName;\n  }\n});\n";
+    initCode = "'use strict';\n\n// Let/const\nvar name = 'Bob', time = 'yesterday';\ntime = 'today';\n\n// Template string\nconsole.log('Hello ' + name + ', how are you ' + time + '?');\n\nvar bob = {\n  // Object shorthand\n  name: name,\n  // Object method\n  sayMyName: function () {\n    console.log(this.name);\n  }\n};\n\n// Classes\nvar SkinnedMesh = function SkinnedMesh() {\n};\n\nSkinnedMesh.prototype.update = function (camera) {\n  camera = camera || createCamera();\n  this.camera = camera;\n};\n\nObject.defineProperty(SkinnedMesh.prototype, 'name', {\n  set: function (geometry) {\n    this.geometry = geometry;\n  },\n  get: function () {\n    return this.geometry;\n  }\n});\n\n// Commonjs\nvar lebab = require('lebab');\nmodule.exports = SkinnedMesh;\n\n// Arrow functions\nvar render = function () {\n  // ...\n  requestAnimationFrame(render);\n};";
   }
 
   transpile(initCode);
-  editor.setValue(initCode);
+  editor.setValue(initCode, -1);
 </script>
