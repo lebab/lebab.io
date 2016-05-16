@@ -1,0 +1,31 @@
+{
+  "name": "lebabjs.github.io",
+  "version": "1.0.0",
+  "description": "Lebab",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node ./node_modules/.bin/webpack --colors"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lebabjs/lebabjs.github.io.git"
+  },
+  "keywords": [
+    "lebab"
+  ],
+  "author": "Mohamad Mohebifar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lebabjs/lebabjs.github.io/issues"
+  },
+  "homepage": "https://github.com/lebabjs/lebabjs.github.io#readme",
+  "devDependencies": {
+    "expose-loader": "^0.7.1",
+    "json-loader": "^0.5.4",
+    "webpack": "^1.13.0"
+  },
+  "dependencies": {
+    "lebab": "^1.2.0"
+  }
+}

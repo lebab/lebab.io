@@ -1,21 +1,6 @@
----
-layout: repl
-title: Lebab - Try it live!
----
+require("expose?Lebab!lebab");
 
-<div class="row divide-2 repl">
-  <div>
-    <div id="editor"></div>
-  </div>
-  <div>
-    <div id="highlighter"></div>
-  </div>
-</div>
-
-<script src="/assets/dist/main.js"></script>
-<script src="https://cdn.jsdelivr.net/ace/1.2.2/min/ace.js"></script>
-
-<script>
+function initiate() {
   var timeout = 0;
   var transformer = new Lebab.Transformer({
     'class': true,
@@ -69,4 +54,4 @@ title: Lebab - Try it live!
 
   transpile(initCode);
   editor.setValue(initCode, -1);
-</script>
+}
