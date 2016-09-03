@@ -1,24 +1,29 @@
-require("expose?Lebab!lebab");
+require("expose?lebab!lebab");
 
 function initiate() {
   var timeout = 0;
-  var transformer = new Lebab.Transformer({
-    'class': true,
-    'template': true,
-    'arrow': true,
-    'let': true,
-    'default-param': true,
-    'obj-method': true,
-    'obj-shorthand': true,
-    'no-strict': true,
-    'commonjs': true
-  });
+
+  function transform(code) {
+    return lebab.transform(code, [
+      'let',
+      'class',
+      'template',
+      'default-param',
+      'arrow',
+      'for-of',
+      'arg-spread',
+      'obj-method',
+      'obj-shorthand',
+      'no-strict',
+      'commonjs',
+    ]).code;
+  }
 
   var editor = ace.edit("editor");
   var highlighter = ace.edit("highlighter");
 
   function transpile(code) {
-    highlighter.setValue(transformer.run(code), -1);
+    highlighter.setValue(transform(code), -1);
     localStorage.code = editor.getValue();
   }
 

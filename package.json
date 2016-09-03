@@ -26,6 +26,6 @@
     "webpack": "^1.13.0"
   },
   "dependencies": {
-    "lebab": "^1.2.0"
+    "lebab": "^2.3.2"
   }
 }
